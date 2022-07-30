@@ -25,7 +25,7 @@ apply<obj1Type,obj2Type>(target: obj1Type, patchItem: obj2Type) : Object | obj2T
 
 ### Example
 
-```js
+```ts
 const patch = {
         title: "Hello!",
         phoneNumber: "+01-123-456-7890",
@@ -59,6 +59,41 @@ console.log(updated);
     content: "This will be unchanged",
     phoneNumber: "+01-123-456-7890",
 }
+```
+
+```ts
+import { apply } from "ts-merge-patch";
+
+const target = { a: 56, b: 65, c: { e: 4, hi: 7 } };
+const patch = { c: { e: 444 }, newProp: "test" };
+console.log(apply(target, patch));
+//{ a: 56, b: 65, c: { e: 444, hi: 7 }, newProp: 'test' }
+
+interface ob1 {
+  thisItem: string;
+  thatItem: string;
+  anotherItem: string;
+}
+interface ob2 {
+  bonusItem: string;
+  thisItem: string;
+  thatItem: string;
+}
+
+interface combined extends ob1, ob2 {}
+
+const target2: ob1 = { anotherItem: "bah", thisItem: "this", thatItem: "that" };
+const patch2: ob2 = { thisItem: "this", thatItem: "nope", bonusItem: "bonus" };
+
+const r = apply<ob1, ob2>(target2, patch2) as combined;
+/*
+{
+  anotherItem: 'bah',
+  thisItem: 'this',
+  thatItem: 'nope',
+  bonusItem: 'bonus'
+}
+*/
 ```
 ## Running tests
 
