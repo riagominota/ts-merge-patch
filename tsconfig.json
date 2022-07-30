@@ -4,8 +4,8 @@
     "module": "ES2022",
     "target": "es2018",
     "moduleResolution": "node",
-    "rootDir": "./",
-    "outDir": "./dist",
+    "rootDir": "src",
+    "outDir": "lib",
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
@@ -15,6 +15,7 @@
       "*": ["./node_modules/*"]
     }
   },
+  "files": ["src/index.ts"],
   "include": ["src/*.ts"],
   "exclude": ["**/*.spec.ts", "node_modules"]
 }
